@@ -19,6 +19,10 @@ use App\Http\Controllers\Admin\AdminMessagesController;
 Route::get('/', [PortfolioController::class, 'index'])->name('portfolio');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
+// File downloads (served through Laravel, not direct storage URLs)
+Route::get('/cv/download', [PortfolioController::class, 'downloadCv'])->name('cv.download');
+Route::get('/certificates/{certification}/download', [PortfolioController::class, 'downloadCertificate'])->name('certificate.download');
+
 // ──────────────────────────────────────────────────────────────
 // ADMIN CMS
 // ──────────────────────────────────────────────────────────────
@@ -44,11 +48,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('/hero', [AdminHeroController::class, 'update'])->name('hero.update');
 
         // Skill categories
-        Route::get('/skills/categories/create',         [AdminSkillController::class, 'createCategory'])->name('skills.categories.create');
-        Route::post('/skills/categories',               [AdminSkillController::class, 'storeCategory'])->name('skills.categories.store');
-        Route::get('/skills/categories/{category}/edit',[AdminSkillController::class, 'editCategory'])->name('skills.categories.edit');
-        Route::put('/skills/categories/{category}',     [AdminSkillController::class, 'updateCategory'])->name('skills.categories.update');
-        Route::delete('/skills/categories/{category}',  [AdminSkillController::class, 'destroyCategory'])->name('skills.categories.destroy');
+        Route::get('/skills/categories/create',          [AdminSkillController::class, 'createCategory'])->name('skills.categories.create');
+        Route::post('/skills/categories',                [AdminSkillController::class, 'storeCategory'])->name('skills.categories.store');
+        Route::get('/skills/categories/{category}/edit', [AdminSkillController::class, 'editCategory'])->name('skills.categories.edit');
+        Route::put('/skills/categories/{category}',      [AdminSkillController::class, 'updateCategory'])->name('skills.categories.update');
+        Route::delete('/skills/categories/{category}',   [AdminSkillController::class, 'destroyCategory'])->name('skills.categories.destroy');
 
         // Skills
         Route::get('/skills',              [AdminSkillController::class, 'index'])->name('skills.index');

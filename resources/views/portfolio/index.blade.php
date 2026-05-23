@@ -302,7 +302,7 @@
                         <i class="ti ti-eye"></i> {{ $hero->cta_primary_label }}
                     </a>
                     @if($settings->cv_path)
-                        <a href="{{ Storage::url($settings->cv_path) }}" class="btn-outline" download>
+                        <a href="{{ route('cv.download') }}" class="btn-outline" download>
                             <i class="ti ti-download"></i> {{ $hero->cta_secondary_label }}
                         </a>
                     @else
@@ -416,7 +416,7 @@
                     @if($cert->certificate_file_path || $cert->credential_url)
                         <div class="cert-link">
                             @if($cert->certificate_file_path)
-                                <a href="{{ Storage::url($cert->certificate_file_path) }}" target="_blank">
+                                <a href="{{ route(certificate.download, $cert) }}" target="_blank">
                                     <i class="ti ti-file-download"></i> View Certificate
                                 </a>
                             @elseif($cert->credential_url)
