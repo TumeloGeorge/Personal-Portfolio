@@ -1,17 +1,20 @@
 #!/bin/sh
 set -e
 
-# Colors for output
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
 echo "${BLUE}Starting Laravel portfolio application...${NC}"
 
-# Wait for database to be ready
-if [ -z "$SKIP_DB_CHECK" ]; then
+# Substitute PORT into nginx config
+export NGINX_PORT=${PORT:-80}
+envsubst '${NGINX_PORT}' < /etc/nginx/http.d/default.conf.template > /etc/nginx/http.d/default.conf
+
+# Wait for database to be ready (only when DB_HOST is explicitly set)
+if [ -n "$DB_HOST" ] && [ "$SKIP_DB_CHECK" != "true" ]; then
     echo "${BLUE}Waiting for database connection...${NC}"
-    while ! nc -z ${DB_HOST:-db} ${DB_PORT:-3306} 2>/dev/null; do
+    while ! nc -z ${DB_HOST} ${DB_PORT:-3306} 2>/dev/null; do
         echo "Waiting for database..."
         sleep 2
     done
@@ -41,7 +44,6 @@ if [ "$APP_ENV" = "production" ]; then
     echo "${GREEN}Configuration cached!${NC}"
 fi
 
-# Clear old cache
 php artisan cache:clear
 php artisan route:clear
 php artisan view:clear
@@ -49,5 +51,4 @@ php artisan view:clear
 echo "${GREEN}Application is ready!${NC}"
 echo "${BLUE}Starting services...${NC}"
 
-# Execute the command passed to the container
 exec "$@"

@@ -21,14 +21,15 @@ RUN apk add --no-cache \
     curl \
     libpng-dev \
     libjpeg-turbo-dev \
-    libfreetype6-dev \
+    freetype-dev \
     libzip-dev \
-    mysql-client \
+    mariadb-client \
     postgresql-client \
     oniguruma-dev \
     yaml-dev \
     supervisor \
-    nginx
+    nginx \
+    gettext
 
 # Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -66,7 +67,7 @@ RUN mkdir -p storage/logs storage/framework/cache storage/framework/sessions sto
 
 # Copy nginx configuration
 COPY docker/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY docker/nginx/default.conf /etc/nginx/http.d/default.conf
+COPY docker/nginx/default.conf /etc/nginx/http.d/default.conf.template
 
 # Copy supervisor configuration
 COPY docker/supervisor/supervisord.conf /etc/supervisord.conf
