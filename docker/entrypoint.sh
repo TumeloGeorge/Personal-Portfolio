@@ -10,9 +10,10 @@ echo "${BLUE}Starting Laravel portfolio application...${NC}"
 mkdir -p /var/log/supervisor /var/run
 
 # Render provides a dynamic PORT; update nginx to listen on it if present.
+NGINX_PORT="${PORT:-80}"
 if [ -n "$PORT" ]; then
-    echo "${BLUE}Configuring nginx to listen on port ${PORT}${NC}"
-    sed -i "s/listen 80;/listen ${PORT};/" /etc/nginx/http.d/default.conf
+    echo "${BLUE}Configuring nginx to listen on port ${NGINX_PORT}${NC}"
+    sed -i "s/listen [0-9][0-9]*/listen ${NGINX_PORT}/" /etc/nginx/http.d/default.conf
 fi
 # Set default values for environment variables if not set
 
