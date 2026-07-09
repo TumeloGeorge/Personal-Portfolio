@@ -6,10 +6,13 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 echo "${BLUE}Starting Laravel portfolio application...${NC}"
-#http://nginx:80tr
-# Substitute PORT into nginx config
-export NGINX_PORT=${PORT:-80}
-envsubst '${NGINX_PORT}' < /etc/nginx/http.d/default.conf.template > /etc/nginx/http.d/default.conf
+
+# Render provides a dynamic PORT; update nginx to listen on it if present.
+if [ -n "$PORT" ]; then
+    echo "${BLUE}Configuring nginx to listen on port ${PORT}${NC}"
+    sed -i "s/listen 80;/listen ${PORT};/" /etc/nginx/http.d/default.conf
+fi
+# Set default values for environment variables if not set
 
 # Wait for database to be ready (only when DB_HOST is explicitly set)
 if [ -n "$DB_HOST" ] && [ "$SKIP_DB_CHECK" != "true" ]; then
