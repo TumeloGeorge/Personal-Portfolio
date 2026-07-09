@@ -6,7 +6,7 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 echo "${BLUE}Starting Laravel portfolio application...${NC}"
-
+#http://nginx:80
 # Substitute PORT into nginx config
 export NGINX_PORT=${PORT:-80}
 envsubst '${NGINX_PORT}' < /etc/nginx/http.d/default.conf.template > /etc/nginx/http.d/default.conf
