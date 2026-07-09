@@ -14,7 +14,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2: PHP application
-FROM php:8.3-fpm-alpine
+FROM php:8.4-fpm-alpine
 
 # Install system dependencies
 RUN apk add --no-cache \
@@ -58,15 +58,15 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Set working directory
 WORKDIR /app
-
+# Set permissions for www-data user
 # Copy application code
 COPY --chown=www-data:www-data . .
-
+# Copy .env file
 # Copy built assets from node stage
 COPY --from=node-builder /app/public/build ./public/build
 
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
+# Install PHP dependencies for the production image only
+RUN composer install --no-dev --no-interaction --prefer-dist --no-progress --optimize-autoloader --no-scripts
 
 # Create storage directories and set permissions
 RUN mkdir -p storage/logs storage/framework/cache storage/framework/sessions storage/framework/views \
