@@ -69,9 +69,9 @@ COPY --from=node-builder /app/public/build ./public/build
 RUN composer install --no-dev --no-interaction --prefer-dist --no-progress --optimize-autoloader --no-scripts
 
 # Create storage directories and set permissions
-RUN mkdir -p storage/logs storage/framework/cache storage/framework/sessions storage/framework/views \
-    && chown -R www-data:www-data storage bootstrap/cache \
-    && chmod -R 775 storage bootstrap/cache
+RUN mkdir -p storage/logs storage/framework/cache storage/framework/sessions storage/framework/views /var/log/supervisor /var/run \
+    && chown -R www-data:www-data storage bootstrap/cache /var/log/supervisor /var/run \
+    && chmod -R 775 storage bootstrap/cache /var/log/supervisor /var/run
 
 # Copy nginx configuration
 COPY docker/nginx/nginx.conf /etc/nginx/nginx.conf

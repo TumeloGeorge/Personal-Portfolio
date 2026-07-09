@@ -7,6 +7,8 @@ NC='\033[0m'
 
 echo "${BLUE}Starting Laravel portfolio application...${NC}"
 
+mkdir -p /var/log/supervisor /var/run
+
 # Render provides a dynamic PORT; update nginx to listen on it if present.
 if [ -n "$PORT" ]; then
     echo "${BLUE}Configuring nginx to listen on port ${PORT}${NC}"
