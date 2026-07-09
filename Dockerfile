@@ -18,32 +18,40 @@ FROM php:8.3-fpm-alpine
 
 # Install system dependencies
 RUN apk add --no-cache \
+    autoconf \
+    bash \
+    build-base \
     curl \
-    libpng-dev \
-    libjpeg-turbo-dev \
     freetype-dev \
+    icu-dev \
+    libjpeg-turbo-dev \
+    libpng-dev \
+    libwebp-dev \
     libzip-dev \
-    mariadb-client \
-    postgresql-client \
+    linux-headers \
+    mariadb-dev \
     oniguruma-dev \
-    yaml-dev \
+    postgresql-dev \
     supervisor \
     nginx \
-    gettext
+    gettext \
+    yaml-dev \
+    zlib-dev
 
 # Install PHP extensions
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
     && docker-php-ext-install \
-    pdo \
-    pdo_mysql \
-    pdo_pgsql \
-    gd \
-    zip \
-    mbstring \
-    exif \
-    pcntl \
-    bcmath \
-    opcache
+        pdo \
+        pdo_mysql \
+        pdo_pgsql \
+        gd \
+        zip \
+        mbstring \
+        exif \
+        pcntl \
+        bcmath \
+        opcache \
+        intl
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -67,7 +75,7 @@ RUN mkdir -p storage/logs storage/framework/cache storage/framework/sessions sto
 
 # Copy nginx configuration
 COPY docker/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY docker/nginx/default.conf /etc/nginx/http.d/default.conf.template
+COPY docker/nginx/default.conf /etc/nginx/http.d/default.conf
 
 # Copy supervisor configuration
 COPY docker/supervisor/supervisord.conf /etc/supervisord.conf
