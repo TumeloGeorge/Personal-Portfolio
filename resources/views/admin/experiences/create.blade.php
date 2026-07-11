@@ -14,40 +14,40 @@
 
             <div class="form-row">
                 <div class="form-group">
-                    <label class="form-label">Job Title <span class="required">*</span></label>
-                    <input type="text" name="job_title" class="form-input" value="{{ old('job_title') }}" placeholder="e.g. Lead UI/UX Designer" required>
+                    <label class="form-label" for="job_title">Job Title <span class="required">*</span></label>
+                    <input type="text" id="job_title" name="job_title" class="form-input" value="{{ old('job_title') }}" placeholder="e.g. Lead UI/UX Designer" required>
                     @error('job_title')<div class="form-error">{{ $message }}</div>@enderror
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Company <span class="required">*</span></label>
-                    <input type="text" name="company" class="form-input" value="{{ old('company') }}" placeholder="e.g. Creative Agency XYZ" required>
+                    <label class="form-label" for="company">Company <span class="required">*</span></label>
+                    <input type="text" id="company" name="company" class="form-input" value="{{ old('company') }}" placeholder="e.g. Creative Agency XYZ" required>
                     @error('company')<div class="form-error">{{ $message }}</div>@enderror
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label class="form-label">Start Year <span class="required">*</span></label>
-                    <input type="number" name="start_year" class="form-input" value="{{ old('start_year') }}" placeholder="2020" min="1900" max="2099" required>
+                    <label class="form-label" for="start_year">Start Year <span class="required">*</span></label>
+                    <input type="number" id="start_year" name="start_year" class="form-input" value="{{ old('start_year') }}" placeholder="2020" min="1900" max="2099" required>
                     @error('start_year')<div class="form-error">{{ $message }}</div>@enderror
                 </div>
                 <div class="form-group">
-                    <label class="form-label">End Year</label>
-                    <input type="number" name="end_year" class="form-input" value="{{ old('end_year') }}" placeholder="Leave blank for Present" min="1900" max="2099">
+                    <label class="form-label" for="end_year">End Year</label>
+                    <input type="number" id="end_year" name="end_year" class="form-input" value="{{ old('end_year') }}" placeholder="Leave blank for Present" min="1900" max="2099">
                     <div class="form-hint">Leave blank to show "Present"</div>
                     @error('end_year')<div class="form-error">{{ $message }}</div>@enderror
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="form-label">Description <span class="required">*</span></label>
-                <textarea name="description" class="form-textarea" rows="4" placeholder="Describe your role and key achievements..." required>{{ old('description') }}</textarea>
+                <label class="form-label" for="experience_description">Description <span class="required">*</span></label>
+                <textarea id="experience_description" name="description" class="form-textarea" rows="4" placeholder="Describe your role and key achievements..." required>{{ old('description') }}</textarea>
                 @error('description')<div class="form-error">{{ $message }}</div>@enderror
             </div>
 
             <div class="form-group">
-                <label class="form-label">Sort Order</label>
-                <input type="number" name="sort_order" class="form-input" value="{{ old('sort_order', 0) }}" min="0" style="width:100px;">
+                <label class="form-label" for="experience_sort_order">Sort Order</label>
+                <input type="number" id="experience_sort_order" name="sort_order" class="form-input" value="{{ old('sort_order', 0) }}" min="0" style="width:100px;">
                 <div class="form-hint">0 = appears first (most recent).</div>
             </div>
 

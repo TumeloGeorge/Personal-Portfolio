@@ -13,30 +13,30 @@
             @csrf @method('PUT')
 
             <div class="form-group">
-                <label class="form-label">Certification Name <span class="required">*</span></label>
-                <input type="text" name="name" class="form-input" value="{{ old('name', $certification->name) }}" required>
+                <label class="form-label" for="certification_name">Certification Name <span class="required">*</span></label>
+                <input type="text" id="certification_name" name="name" class="form-input" value="{{ old('name', $certification->name) }}" required>
                 @error('name')<div class="form-error">{{ $message }}</div>@enderror
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label class="form-label">Issuing Body <span class="required">*</span></label>
-                    <input type="text" name="issuing_body" class="form-input" value="{{ old('issuing_body', $certification->issuing_body) }}" required>
+                    <label class="form-label" for="issuing_body">Issuing Body <span class="required">*</span></label>
+                    <input type="text" id="issuing_body" name="issuing_body" class="form-input" value="{{ old('issuing_body', $certification->issuing_body) }}" required>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Year <span class="required">*</span></label>
-                    <input type="number" name="year" class="form-input" value="{{ old('year', $certification->year) }}" min="1900" max="2099" required>
+                    <label class="form-label" for="year">Year <span class="required">*</span></label>
+                    <input type="number" id="year" name="year" class="form-input" value="{{ old('year', $certification->year) }}" min="1900" max="2099" required>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="form-label">Credential URL</label>
-                <input type="url" name="credential_url" class="form-input" value="{{ old('credential_url', $certification->credential_url) }}">
+                <label class="form-label" for="credential_url">Credential URL</label>
+                <input type="url" id="credential_url" name="credential_url" class="form-input" value="{{ old('credential_url', $certification->credential_url) }}">
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label class="form-label">Replace Certificate File</label>
+                    <label class="form-label" for="cert_file">Replace Certificate File</label>
                     @if($certification->certificate_file_path)
                         <div style="margin-bottom:8px; font-size:12px; color:#64748b; display:flex; align-items:center; gap:6px;">
                             <i class="ti ti-file" style="color:#38bdf8;"></i>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Replace Badge Image</label>
+                    <label class="form-label" for="badge_img">Replace Badge Image</label>
                     @if($certification->badge_image_path)
                         <div style="margin-bottom:8px;">
                             <img src="{{ Storage::url($certification->badge_image_path) }}" class="img-preview">
@@ -69,8 +69,8 @@
             </div>
 
             <div class="form-group">
-                <label class="form-label">Sort Order</label>
-                <input type="number" name="sort_order" class="form-input" value="{{ old('sort_order', $certification->sort_order) }}" min="0" style="width:100px;">
+                <label class="form-label" for="certification_sort_order">Sort Order</label>
+                <input type="number" id="certification_sort_order" name="sort_order" class="form-input" value="{{ old('sort_order', $certification->sort_order) }}" min="0" style="width:100px;">
             </div>
 
             <div style="display:flex; gap:10px; margin-top:8px;">

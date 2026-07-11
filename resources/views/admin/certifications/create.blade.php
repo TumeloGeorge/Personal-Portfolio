@@ -13,33 +13,33 @@
             @csrf
 
             <div class="form-group">
-                <label class="form-label">Certification Name <span class="required">*</span></label>
-                <input type="text" name="name" class="form-input" value="{{ old('name') }}" placeholder="e.g. Google UX Design Certificate" required>
+                <label class="form-label" for="certification_name">Certification Name <span class="required">*</span></label>
+                <input type="text" id="certification_name" name="name" class="form-input" value="{{ old('name') }}" placeholder="e.g. Google UX Design Certificate" required>
                 @error('name')<div class="form-error">{{ $message }}</div>@enderror
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label class="form-label">Issuing Body <span class="required">*</span></label>
-                    <input type="text" name="issuing_body" class="form-input" value="{{ old('issuing_body') }}" placeholder="e.g. Google / Coursera" required>
+                    <label class="form-label" for="issuing_body">Issuing Body <span class="required">*</span></label>
+                    <input type="text" id="issuing_body" name="issuing_body" class="form-input" value="{{ old('issuing_body') }}" placeholder="e.g. Google / Coursera" required>
                     @error('issuing_body')<div class="form-error">{{ $message }}</div>@enderror
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Year <span class="required">*</span></label>
-                    <input type="number" name="year" class="form-input" value="{{ old('year', date('Y')) }}" min="1900" max="2099" required>
+                    <label class="form-label" for="year">Year <span class="required">*</span></label>
+                    <input type="number" id="year" name="year" class="form-input" value="{{ old('year', date('Y')) }}" min="1900" max="2099" required>
                     @error('year')<div class="form-error">{{ $message }}</div>@enderror
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="form-label">Credential URL</label>
-                <input type="url" name="credential_url" class="form-input" value="{{ old('credential_url') }}" placeholder="https://...">
+                <label class="form-label" for="credential_url">Credential URL</label>
+                <input type="url" id="credential_url" name="credential_url" class="form-input" value="{{ old('credential_url') }}" placeholder="https://...">
                 <div class="form-hint">Optional link to verify the certificate online.</div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label class="form-label">Certificate File</label>
+                    <label class="form-label" for="cert_file">Certificate File</label>
                     <div class="file-upload" onclick="document.getElementById('cert_file').click()">
                         <input type="file" id="cert_file" name="certificate_file" accept=".pdf,.jpg,.jpeg,.png"
                                onchange="previewFile(this,'cert-preview')">
@@ -50,7 +50,7 @@
                     @error('certificate_file')<div class="form-error">{{ $message }}</div>@enderror
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Badge / Logo Image</label>
+                    <label class="form-label" for="badge_img">Badge / Logo Image</label>
                     <div class="file-upload" onclick="document.getElementById('badge_img').click()">
                         <input type="file" id="badge_img" name="badge_image" accept="image/*"
                                onchange="previewFile(this,'badge-preview')">
@@ -63,8 +63,8 @@
             </div>
 
             <div class="form-group">
-                <label class="form-label">Sort Order</label>
-                <input type="number" name="sort_order" class="form-input" value="{{ old('sort_order', 0) }}" min="0" style="width:100px;">
+                <label class="form-label" for="certification_sort_order">Sort Order</label>
+                <input type="number" id="certification_sort_order" name="sort_order" class="form-input" value="{{ old('sort_order', 0) }}" min="0" style="width:100px;">
             </div>
 
             <div style="display:flex; gap:10px; margin-top:8px;">

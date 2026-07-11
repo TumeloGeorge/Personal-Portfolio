@@ -16,31 +16,31 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Headline (Your Name) <span class="required">*</span></label>
-                    <input type="text" name="headline" class="form-input" value="{{ old('headline', $hero->headline) }}" required>
+                    <label class="form-label" for="headline">Headline (Your Name) <span class="required">*</span></label>
+                    <input type="text" id="headline" name="headline" class="form-input" value="{{ old('headline', $hero->headline) }}" required>
                     @error('headline')<div class="form-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Subheadline (Role Title) <span class="required">*</span></label>
-                    <input type="text" name="subheadline" class="form-input" value="{{ old('subheadline', $hero->subheadline) }}" placeholder="e.g. UI/UX & Graphic Designer" required>
+                    <label class="form-label" for="subheadline">Subheadline (Role Title) <span class="required">*</span></label>
+                    <input type="text" id="subheadline" name="subheadline" class="form-input" value="{{ old('subheadline', $hero->subheadline) }}" placeholder="e.g. UI/UX & Graphic Designer" required>
                     @error('subheadline')<div class="form-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Bio Paragraph <span class="required">*</span></label>
-                    <textarea name="bio" class="form-textarea" rows="4" required>{{ old('bio', $hero->bio) }}</textarea>
+                    <label class="form-label" for="bio">Bio Paragraph <span class="required">*</span></label>
+                    <textarea id="bio" name="bio" class="form-textarea" rows="4" required>{{ old('bio', $hero->bio) }}</textarea>
                     @error('bio')<div class="form-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label">Primary CTA Label</label>
-                        <input type="text" name="cta_primary_label" class="form-input" value="{{ old('cta_primary_label', $hero->cta_primary_label) }}" placeholder="View Projects">
+                        <label class="form-label" for="cta_primary_label">Primary CTA Label</label>
+                        <input type="text" id="cta_primary_label" name="cta_primary_label" class="form-input" value="{{ old('cta_primary_label', $hero->cta_primary_label) }}" placeholder="View Projects">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Secondary CTA Label</label>
-                        <input type="text" name="cta_secondary_label" class="form-input" value="{{ old('cta_secondary_label', $hero->cta_secondary_label) }}" placeholder="Download CV">
+                        <label class="form-label" for="cta_secondary_label">Secondary CTA Label</label>
+                        <input type="text" id="cta_secondary_label" name="cta_secondary_label" class="form-input" value="{{ old('cta_secondary_label', $hero->cta_secondary_label) }}" placeholder="Download CV">
                     </div>
                 </div>
 
@@ -48,16 +48,16 @@
                     <div class="card-title" style="margin-bottom:14px; font-size:13px;">Stats</div>
                     <div class="form-row" style="grid-template-columns:1fr 1fr 1fr;">
                         <div class="form-group">
-                            <label class="form-label">Projects Count</label>
-                            <input type="number" name="projects_count" class="form-input" value="{{ old('projects_count', $hero->projects_count) }}" min="0">
+                            <label class="form-label" for="projects_count">Projects Count</label>
+                            <input type="number" id="projects_count" name="projects_count" class="form-input" value="{{ old('projects_count', $hero->projects_count) }}" min="0">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Years Experience</label>
-                            <input type="number" name="years_experience" class="form-input" value="{{ old('years_experience', $hero->years_experience) }}" min="0">
+                            <label class="form-label" for="years_experience">Years Experience</label>
+                            <input type="number" id="years_experience" name="years_experience" class="form-input" value="{{ old('years_experience', $hero->years_experience) }}" min="0">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Clients Count</label>
-                            <input type="number" name="clients_count" class="form-input" value="{{ old('clients_count', $hero->clients_count) }}" min="0">
+                            <label class="form-label" for="clients_count">Clients Count</label>
+                            <input type="number" id="clients_count" name="clients_count" class="form-input" value="{{ old('clients_count', $hero->clients_count) }}" min="0">
                         </div>
                     </div>
                 </div>

@@ -20,7 +20,7 @@
 
                 {{-- Avatar --}}
                 <div class="form-group">
-                    <label class="form-label">Profile Photo</label>
+                    <label class="form-label" for="avatar">Profile Photo</label>
                     @if($settings->avatar_path)
                         <div style="margin-bottom:10px;">
                             <img src="{{ Storage::url($settings->avatar_path) }}" class="img-preview" alt="Avatar">
@@ -36,30 +36,30 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Full Name <span class="required">*</span></label>
-                    <input type="text" name="full_name" class="form-input" value="{{ old('full_name', $settings->full_name) }}" required>
+                    <label class="form-label" for="full_name">Full Name <span class="required">*</span></label>
+                    <input type="text" id="full_name" name="full_name" autocomplete="on" class="form-input" value="{{ old('full_name', $settings->full_name) }}" required>
                     @error('full_name')<div class="form-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Role / Title <span class="required">*</span></label>
-                    <input type="text" name="role_title" class="form-input" value="{{ old('role_title', $settings->role_title) }}" placeholder="e.g. UI/UX & Graphic Designer" required>
+                    <label class="form-label" for="role_title">Role / Title <span class="required">*</span></label>
+                    <input type="text" id="role_title" name="role_title" class="form-input" value="{{ old('role_title', $settings->role_title) }}" placeholder="e.g. UI/UX & Graphic Designer" required>
                     @error('role_title')<div class="form-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Short Bio <span class="required">*</span></label>
-                    <textarea name="short_bio" class="form-textarea" rows="4" required>{{ old('short_bio', $settings->short_bio) }}</textarea>
+                    <label class="form-label" for="short_bio">Short Bio <span class="required">*</span></label>
+                    <textarea id="short_bio" name="short_bio" class="form-textarea" rows="4" required>{{ old('short_bio', $settings->short_bio) }}</textarea>
                     @error('short_bio')<div class="form-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Site Name</label>
-                    <input type="text" name="site_name" class="form-input" value="{{ old('site_name', $settings->site_name) }}">
+                    <label class="form-label" for="site_name">Site Name</label>
+                    <input type="text" id="site_name" name="site_name" class="form-input" value="{{ old('site_name', $settings->site_name) }}">
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Accent Color</label>
+                    <label class="form-label" for="accent_color">Accent Color</label>
                     <div class="color-input-wrap">
                         <input type="color" id="accent_color_picker" value="{{ old('accent_color', $settings->accent_color) }}"
                             oninput="document.getElementById('accent_color').value=this.value">
@@ -73,9 +73,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                    <label class="form-label" for="available_for_work" style="display:flex;align-items:center;gap:10px;cursor:pointer;">
                         <input type="hidden" name="available_for_work" value="0">
-                        <input type="checkbox" name="available_for_work" value="1" {{ $settings->available_for_work ? 'checked' : '' }}
+                        <input type="checkbox" id="available_for_work" name="available_for_work" value="1" {{ $settings->available_for_work ? 'checked' : '' }}
                             style="width:16px;height:16px;accent-color:#38bdf8;">
                         Available for Work (shows green badge on hero)
                     </label>
@@ -115,19 +115,19 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Email Address</label>
-                    <input type="email" name="email" class="form-input" value="{{ old('email', $settings->email) }}">
+                    <label class="form-label" for="email">Email Address</label>
+                    <input type="email" id="email" name="email" autocomplete="on" class="form-input" value="{{ old('email', $settings->email) }}">
                     @error('email')<div class="form-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Phone</label>
-                    <input type="text" name="phone" class="form-input" value="{{ old('phone', $settings->phone) }}" placeholder="+267 71 000 000">
+                    <label class="form-label" for="phone">Phone</label>
+                    <input type="text" id="phone" name="phone" autocomplete="on" class="form-input" value="{{ old('phone', $settings->phone) }}" placeholder="+267 71 000 000">
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Location</label>
-                    <input type="text" name="location" class="form-input" value="{{ old('location', $settings->location) }}" placeholder="Gaborone, Botswana">
+                    <label class="form-label" for="location">Location</label>
+                    <input type="text" id="location" name="location" class="form-input" value="{{ old('location', $settings->location) }}" placeholder="Gaborone, Botswana">
                 </div>
             </div>
 
@@ -138,26 +138,26 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label"><i class="ti ti-brand-linkedin"></i> LinkedIn URL</label>
-                    <input type="url" name="linkedin_url" class="form-input" value="{{ old('linkedin_url', $settings->linkedin_url) }}" placeholder="https://linkedin.com/in/...">
+                    <label class="form-label" for="linkedin_url"><i class="ti ti-brand-linkedin"></i> LinkedIn URL</label>
+                    <input type="url" id="linkedin_url" name="linkedin_url" class="form-input" value="{{ old('linkedin_url', $settings->linkedin_url) }}" placeholder="https://linkedin.com/in/...">
                     @error('linkedin_url')<div class="form-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label"><i class="ti ti-brand-behance"></i> Behance URL</label>
-                    <input type="url" name="behance_url" class="form-input" value="{{ old('behance_url', $settings->behance_url) }}" placeholder="https://behance.net/...">
+                    <label class="form-label" for="behance_url"><i class="ti ti-brand-behance"></i> Behance URL</label>
+                    <input type="url" id="behance_url" name="behance_url" class="form-input" value="{{ old('behance_url', $settings->behance_url) }}" placeholder="https://behance.net/...">
                     @error('behance_url')<div class="form-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label"><i class="ti ti-brand-dribbble"></i> Dribbble URL</label>
-                    <input type="url" name="dribbble_url" class="form-input" value="{{ old('dribbble_url', $settings->dribbble_url) }}" placeholder="https://dribbble.com/...">
+                    <label class="form-label" for="dribbble_url"><i class="ti ti-brand-dribbble"></i> Dribbble URL</label>
+                    <input type="url" id="dribbble_url" name="dribbble_url" class="form-input" value="{{ old('dribbble_url', $settings->dribbble_url) }}" placeholder="https://dribbble.com/...">
                     @error('dribbble_url')<div class="form-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label"><i class="ti ti-brand-github"></i> GitHub URL</label>
-                    <input type="url" name="github_url" class="form-input" value="{{ old('github_url', $settings->github_url) }}" placeholder="https://github.com/...">
+                    <label class="form-label" for="github_url"><i class="ti ti-brand-github"></i> GitHub URL</label>
+                    <input type="url" id="github_url" name="github_url" class="form-input" value="{{ old('github_url', $settings->github_url) }}" placeholder="https://github.com/...">
                     @error('github_url')<div class="form-error">{{ $message }}</div>@enderror
                 </div>
             </div>

@@ -13,22 +13,22 @@
             @csrf @method('PUT')
 
             <div class="form-group">
-                <label class="form-label">Category Name <span class="required">*</span></label>
-                <input type="text" name="name" class="form-input" value="{{ old('name', $category->name) }}" required>
+                <label class="form-label" for="category_name">Category Name <span class="required">*</span></label>
+                <input type="text" id="category_name" name="name" class="form-input" value="{{ old('name', $category->name) }}" required>
                 @error('name')<div class="form-error">{{ $message }}</div>@enderror
             </div>
 
             <div class="form-group">
-                <label class="form-label">Icon Class</label>
-                <input type="text" name="icon" class="form-input" value="{{ old('icon', $category->icon) }}" placeholder="e.g. ti-layout">
+                <label class="form-label" for="category_icon">Icon Class</label>
+                <input type="text" id="category_icon" name="icon" class="form-input" value="{{ old('icon', $category->icon) }}" placeholder="e.g. ti-layout">
                 <div class="form-hint">
                     Use a <a href="https://tabler.io/icons" target="_blank" style="color:#38bdf8;">Tabler Icons</a> name.
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="form-label">Sort Order</label>
-                <input type="number" name="sort_order" class="form-input" value="{{ old('sort_order', $category->sort_order) }}" min="0" style="width:100px;">
+                <label class="form-label" for="category_sort_order">Sort Order</label>
+                <input type="number" id="category_sort_order" name="sort_order" class="form-input" value="{{ old('sort_order', $category->sort_order) }}" min="0" style="width:100px;">
             </div>
 
             <div style="display:flex; gap:10px; margin-top:8px;">

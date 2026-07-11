@@ -13,20 +13,20 @@
             @csrf @method('PUT')
 
             <div class="form-group">
-                <label class="form-label">Project Title <span class="required">*</span></label>
-                <input type="text" name="title" class="form-input" value="{{ old('title', $project->title) }}" required>
+                <label class="form-label" for="project_title">Project Title <span class="required">*</span></label>
+                <input type="text" id="project_title" name="title" class="form-input" value="{{ old('title', $project->title) }}" required>
                 @error('title')<div class="form-error">{{ $message }}</div>@enderror
             </div>
 
             <div class="form-group">
-                <label class="form-label">Description <span class="required">*</span></label>
-                <textarea name="description" class="form-textarea" rows="4" required>{{ old('description', $project->description) }}</textarea>
+                <label class="form-label" for="project_description">Description <span class="required">*</span></label>
+                <textarea id="project_description" name="description" class="form-textarea" rows="4" required>{{ old('description', $project->description) }}</textarea>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label class="form-label">Category <span class="required">*</span></label>
-                    <input type="text" name="category" class="form-input" value="{{ old('category', $project->category) }}"
+                    <label class="form-label" for="project_category">Category <span class="required">*</span></label>
+                    <input type="text" id="project_category" name="category" class="form-input" value="{{ old('category', $project->category) }}"
                            list="cat-suggestions" required>
                     <datalist id="cat-suggestions">
                         <option value="UI/UX">
@@ -37,13 +37,13 @@
                     </datalist>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Sort Order</label>
-                    <input type="number" name="sort_order" class="form-input" value="{{ old('sort_order', $project->sort_order) }}" min="0">
+                    <label class="form-label" for="project_sort_order">Sort Order</label>
+                    <input type="number" id="project_sort_order" name="sort_order" class="form-input" value="{{ old('sort_order', $project->sort_order) }}" min="0">
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="form-label">Thumbnail Image</label>
+                <label class="form-label" for="thumb">Thumbnail Image</label>
                 @if($project->thumbnail_path)
                     <div style="margin-bottom:10px;">
                         <img src="{{ Storage::url($project->thumbnail_path) }}"
@@ -63,19 +63,19 @@
 
             <div class="form-row">
                 <div class="form-group">
-                    <label class="form-label">Project URL</label>
-                    <input type="url" name="project_url" class="form-input" value="{{ old('project_url', $project->project_url) }}">
+                    <label class="form-label" for="project_url">Project URL</label>
+                    <input type="url" id="project_url" name="project_url" class="form-input" value="{{ old('project_url', $project->project_url) }}">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Case Study URL</label>
-                    <input type="url" name="case_study_url" class="form-input" value="{{ old('case_study_url', $project->case_study_url) }}">
+                    <label class="form-label" for="case_study_url">Case Study URL</label>
+                    <input type="url" id="case_study_url" name="case_study_url" class="form-input" value="{{ old('case_study_url', $project->case_study_url) }}">
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="form-label" style="display:flex; align-items:center; gap:10px; cursor:pointer;">
+                <label class="form-label" for="featured" style="display:flex; align-items:center; gap:10px; cursor:pointer;">
                     <input type="hidden" name="featured" value="0">
-                    <input type="checkbox" name="featured" value="1" {{ old('featured', $project->featured) ? 'checked' : '' }}
+                    <input type="checkbox" id="featured" name="featured" value="1" {{ old('featured', $project->featured) ? 'checked' : '' }}
                            style="width:16px; height:16px; accent-color:#38bdf8;">
                     Mark as Featured
                 </label>
