@@ -45,7 +45,7 @@ A full-stack personal portfolio website with a built-in Content Management Syste
 ---
 
 ## Project Structure
-
+```
 portfolio/
 ├── app/
 │   ├── Http/
@@ -82,7 +82,7 @@ portfolio/
 └── routes/
     └── web.php                             # Public + admin routes
 
-
+```
 ---
 
 ## Local Setup
