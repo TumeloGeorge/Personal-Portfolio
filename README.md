@@ -48,34 +48,39 @@ A full-stack personal portfolio website with a built-in Content Management Syste
 
 portfolio/
 ├── app/
-│ ├── Http/
-│ │ ├── Controllers/
-│ │ │ ├── Admin/ # All CMS controllers
-│ │ │ ├── PortfolioController # Public portfolio
-│ │ │ └── ContactController # Contact form handler
-│ │ └── Middleware/
-│ │ └── AdminAuthenticate # Protects /admin routes
-│ └── Models/
-│ ├── Admin # CMS user (separate from User)
-│ ├── Setting # Site-wide settings (single row)
-│ ├── Hero # Hero section content (single row)
-│ ├── SkillCategory # Skill groupings
-│ ├── Skill # Individual skills
-│ ├── Experience # Work history entries
-│ ├── Certification # Certifications + file paths
-│ ├── Project # Portfolio projects
-│ └── ContactMessage # Inbox messages
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Admin/                    # All CMS controllers
+│   │   │   ├── PortfolioController       # Public portfolio
+│   │   │   └── ContactController         # Contact form handler
+│   │   └── Middleware/
+│   │       └── AdminAuthenticate          # Protects /admin routes
+│   │
+│   └── Models/
+│       ├── Admin                          # CMS user (separate from User)
+│       ├── Setting                        # Site-wide settings (single row)
+│       ├── Hero                           # Hero section content (single row)
+│       ├── SkillCategory                  # Skill groupings
+│       ├── Skill                          # Individual skills
+│       ├── Experience                     # Work history entries
+│       ├── Certification                  # Certifications + file paths
+│       ├── Project                        # Portfolio projects
+│       └── ContactMessage                 # Inbox messages
+│
 ├── database/
-│ ├── migrations/ # 9 custom migration files
-│ └── seeders/
-│ ├── AdminSeeder # Creates initial admin account
-│ └── DefaultContentSeeder # Seeds placeholder content
-├── resources/views/
-│ ├── admin/ # CMS views (layout, auth, all sections)
-│ └── portfolio/
-│ └── index.blade.php # Full public portfolio (single page)
+│   ├── migrations/                        # 9 custom migration files
+│   └── seeders/
+│       ├── AdminSeeder                    # Creates initial admin account
+│       └── DefaultContentSeeder           # Seeds placeholder content
+│
+├── resources/
+│   └── views/
+│       ├── admin/                          # CMS views (layout, auth, all sections)
+│       └── portfolio/
+│           └── index.blade.php             # Full public portfolio (single page)
+│
 └── routes/
-└── web.php # Public + admin routes
+    └── web.php                             # Public + admin routes
 
 
 ---
@@ -161,7 +166,7 @@ Visit `http://localhost:8000` for the portfolio and `http://localhost:8000/admin
 
 ---
 
-## 🔐 Admin Panel Routes
+## Admin Panel Routes
 
 | Route | Description |
 |-------|-------------|
@@ -177,7 +182,7 @@ Visit `http://localhost:8000` for the portfolio and `http://localhost:8000/admin
 
 ---
 
-## 📦 File Uploads
+## File Uploads
 
 Uploaded files are stored in `storage/app/public/` under these subdirectories:
 
@@ -195,7 +200,7 @@ Files are served via the `public` disk. Run `php artisan storage:link` to create
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 ### Environment variables for production
 ```env
@@ -219,7 +224,7 @@ For persistent file storage across deployments, configure an S3-compatible bucke
 
 ---
 
-## 🐳 Docker 
+## Docker 
 
 Docker + docker-compose support for Render deployment, including:
 - PHP 8.4 + Nginx container
@@ -229,13 +234,13 @@ Docker + docker-compose support for Render deployment, including:
 
 ---
 
-## 📝 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-## 👤 Author
+## Author
 
 **Tumelo George**  
 Software Engineer & IT infrastructure Support Technician 
