@@ -35,7 +35,7 @@
                 <tr>
                     <td>
                         @if($project->thumbnail_path)
-                            <img src="{{ Storage::url($project->thumbnail_path) }}"
+                            <img src="{{ \App\Support\StorageUrl::for($project->thumbnail_path) }}"
                                  style="width:56px; height:40px; border-radius:6px; object-fit:cover; border:1px solid #e2e8f0;">
                         @else
                             <div style="width:56px; height:40px; border-radius:6px; background:#f1f5f9; display:flex; align-items:center; justify-content:center;">

@@ -23,7 +23,7 @@
                     <label class="form-label" for="avatar">Profile Photo</label>
                     @if($settings->avatar_path)
                         <div style="margin-bottom:10px;">
-                            <img src="{{ Storage::url($settings->avatar_path) }}" class="img-preview" alt="Avatar">
+                            <img src="{{ \App\Support\StorageUrl::for($settings->avatar_path) }}" class="img-preview" alt="Avatar">
                         </div>
                     @endif
                     <div class="file-upload" onclick="document.getElementById('avatar').click()">

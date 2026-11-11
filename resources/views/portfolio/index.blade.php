@@ -329,7 +329,7 @@
             <div class="avatar-wrap">
                 <div class="avatar">
                     @if($settings->avatar_path)
-                        <img src="{{ Storage::url($settings->avatar_path) }}" alt="{{ $settings->full_name }}">
+                        <img src="{{ \App\Support\StorageUrl::for($settings->avatar_path) }}" alt="{{ $settings->full_name }}">
                     @else
                         {{ strtoupper(substr($settings->full_name, 0, 2)) }}
                     @endif
@@ -404,7 +404,7 @@
             <div class="cert-card">
                 <div class="cert-icon">
                     @if($cert->badge_image_path)
-                        <img src="{{ Storage::url($cert->badge_image_path) }}" alt="{{ $cert->issuing_body }}">
+                        <img src="{{ \App\Support\StorageUrl::for($cert->badge_image_path) }}" alt="{{ $cert->issuing_body }}">
                     @else
                         <i class="ti ti-certificate"></i>
                     @endif
@@ -455,7 +455,7 @@
             <div class="proj-card" data-category="{{ $project->category }}">
                 <div class="proj-thumb">
                     @if($project->thumbnail_path)
-                        <img src="{{ Storage::url($project->thumbnail_path) }}" alt="{{ $project->title }}">
+                        <img src="{{ \App\Support\StorageUrl::for($project->thumbnail_path) }}" alt="{{ $project->title }}">
                     @else
                         <div class="proj-thumb-placeholder">PROJECT PREVIEW</div>
                     @endif

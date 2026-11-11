@@ -35,7 +35,7 @@
                 <tr>
                     <td>
                         @if($cert->badge_image_path)
-                            <img src="{{ Storage::url($cert->badge_image_path) }}" style="width:36px;height:36px;border-radius:6px;object-fit:cover;">
+                            <img src="{{ \App\Support\StorageUrl::for($cert->badge_image_path) }}" style="width:36px;height:36px;border-radius:6px;object-fit:cover;">
                         @else
                             <div style="width:36px;height:36px;border-radius:6px;background:rgba(56,189,248,0.1);display:flex;align-items:center;justify-content:center;">
                                 <i class="ti ti-certificate" style="color:#38bdf8;font-size:18px;"></i>

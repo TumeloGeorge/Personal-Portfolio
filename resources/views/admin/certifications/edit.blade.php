@@ -55,7 +55,7 @@
                     <label class="form-label" for="badge_img">Replace Badge Image</label>
                     @if($certification->badge_image_path)
                         <div style="margin-bottom:8px;">
-                            <img src="{{ Storage::url($certification->badge_image_path) }}" class="img-preview">
+                            <img src="{{ \App\Support\StorageUrl::for($certification->badge_image_path) }}" class="img-preview">
                         </div>
                     @endif
                     <div class="file-upload" onclick="document.getElementById('badge_img').click()">

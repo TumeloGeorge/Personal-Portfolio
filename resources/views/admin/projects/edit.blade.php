@@ -46,7 +46,7 @@
                 <label class="form-label" for="thumb">Thumbnail Image</label>
                 @if($project->thumbnail_path)
                     <div style="margin-bottom:10px;">
-                        <img src="{{ Storage::url($project->thumbnail_path) }}"
+                        <img src="{{ \App\Support\StorageUrl::for($project->thumbnail_path) }}"
                              style="max-height:120px; border-radius:8px; border:1px solid #e2e8f0;">
                     </div>
                 @endif

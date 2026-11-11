@@ -104,14 +104,13 @@ AWS_CA_BUNDLE=
 ```
 
 Grant the application's IAM identity permission to list the bucket and read,
-write, and delete objects. Portfolio images are rendered with their storage
-URLs, so allow public `s3:GetObject` only for the `avatars/*`, `projects/*`,
-and `badges/*` object prefixes using a bucket policy (do not enable public
-access to the entire bucket). CVs and certification files are streamed through
-the application download routes and do not need public object access. Restart
-the application after changing storage environment values. Before switching an
-existing deployment, copy its `storage/app/public` files into the bucket with
-the same relative paths so existing database references keep working.
+write, and delete objects. Image previews and portfolio images use one-hour
+signed URLs, so the bucket can remain private; do not enable public bucket
+access. CVs and certification files are streamed through the application
+download routes. Restart the application after changing storage environment
+values. Before switching an existing deployment, copy its `storage/app/public`
+files into the bucket with the same relative paths so existing database
+references keep working.
 
 ### SSL/TLS Configuration
 
