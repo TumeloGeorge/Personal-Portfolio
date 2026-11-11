@@ -82,6 +82,37 @@ MAIL_USERNAME=<your-email>
 MAIL_PASSWORD=<your-password>
 ```
 
+### Amazon S3 file storage
+
+The application stores uploads on the disk selected by `FILESYSTEM_DISK`. Keep
+`public` for local storage or set it to `s3` to store uploaded avatars, project
+thumbnails, certification badges/files, and CVs in Amazon S3. Add the following
+values to the environment used by Docker Compose:
+
+```bash
+FILESYSTEM_DISK=s3
+AWS_ACCESS_KEY_ID=<access-key>
+AWS_SECRET_ACCESS_KEY=<secret-key>
+AWS_DEFAULT_REGION=<bucket-region>
+AWS_BUCKET=<bucket-name>
+# Optional, for a CDN or S3-compatible service:
+AWS_URL=
+AWS_ENDPOINT=
+AWS_USE_PATH_STYLE_ENDPOINT=false
+# Optional CA bundle path when the PHP runtime does not trust system CAs:
+AWS_CA_BUNDLE=
+```
+
+Grant the application's IAM identity permission to list the bucket and read,
+write, and delete objects. Portfolio images are rendered with their storage
+URLs, so allow public `s3:GetObject` only for the `avatars/*`, `projects/*`,
+and `badges/*` object prefixes using a bucket policy (do not enable public
+access to the entire bucket). CVs and certification files are streamed through
+the application download routes and do not need public object access. Restart
+the application after changing storage environment values. Before switching an
+existing deployment, copy its `storage/app/public` files into the bucket with
+the same relative paths so existing database references keep working.
+
 ### SSL/TLS Configuration
 
 1. **Using Let's Encrypt with Certbot**:

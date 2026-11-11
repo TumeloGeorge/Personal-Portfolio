@@ -35,18 +35,18 @@ class PortfolioController extends Controller
     }
 
     /**
-     * Force-download the CV file stored in public disk.
+     * Force-download the CV file from the configured storage disk.
      */
     public function downloadCv(): StreamedResponse
     {
         $settings = Setting::instance();
 
         abort_if(!$settings->cv_path, 404, 'No CV uploaded yet.');
-        abort_if(!Storage::disk('public')->exists($settings->cv_path), 404, 'CV file not found.');
+        abort_if(!Storage::disk()->exists($settings->cv_path), 404, 'CV file not found.');
 
         $filename = $settings->full_name . ' - CV.pdf';
 
-        return Storage::disk('public')->download($settings->cv_path, $filename);
+        return Storage::disk()->download($settings->cv_path, $filename);
     }
 
     /**
@@ -55,11 +55,11 @@ class PortfolioController extends Controller
     public function downloadCertificate(\App\Models\Certification $certification): StreamedResponse
     {
         abort_if(!$certification->certificate_file_path, 404, 'No certificate file uploaded.');
-        abort_if(!Storage::disk('public')->exists($certification->certificate_file_path), 404, 'Certificate file not found.');
+        abort_if(!Storage::disk()->exists($certification->certificate_file_path), 404, 'Certificate file not found.');
 
         $ext      = pathinfo($certification->certificate_file_path, PATHINFO_EXTENSION);
         $filename = $certification->name . ' - ' . $certification->issuing_body . '.' . $ext;
 
-        return Storage::disk('public')->download($certification->certificate_file_path, $filename);
+        return Storage::disk()->download($certification->certificate_file_path, $filename);
     }
 }

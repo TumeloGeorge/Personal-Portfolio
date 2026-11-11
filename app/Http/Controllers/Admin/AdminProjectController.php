@@ -35,7 +35,7 @@ class AdminProjectController extends Controller
 
         if ($request->hasFile('thumbnail')) {
             $validated['thumbnail_path'] = $request->file('thumbnail')
-                ->store('projects', 'public');
+                ->store('projects');
         }
 
         $validated['featured'] = $request->boolean('featured');
@@ -62,24 +62,26 @@ class AdminProjectController extends Controller
             'thumbnail'      => ['nullable', 'image', 'max:4096'],
         ]);
 
+        $oldThumbnailPath = null;
         if ($request->hasFile('thumbnail')) {
-            if ($project->thumbnail_path) {
-                Storage::disk('public')->delete($project->thumbnail_path);
-            }
+            $oldThumbnailPath = $project->thumbnail_path;
             $validated['thumbnail_path'] = $request->file('thumbnail')
-                ->store('projects', 'public');
+                ->store('projects');
         }
 
         $validated['featured'] = $request->boolean('featured');
 
         $project->update($validated);
+        if ($oldThumbnailPath) {
+            Storage::disk()->delete($oldThumbnailPath);
+        }
         return redirect()->route('admin.projects.index')->with('success', 'Project updated.');
     }
 
     public function destroy(Project $project)
     {
         if ($project->thumbnail_path) {
-            Storage::disk('public')->delete($project->thumbnail_path);
+            Storage::disk()->delete($project->thumbnail_path);
         }
         $project->delete();
         return redirect()->route('admin.projects.index')->with('success', 'Project deleted.');

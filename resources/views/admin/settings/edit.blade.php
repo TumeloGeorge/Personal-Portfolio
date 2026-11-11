@@ -91,7 +91,7 @@
                     <div style="margin-bottom:12px; padding:10px 14px; background:#f8fafc; border-radius:8px; border:1px solid #e2e8f0; font-size:12px; color:#374151; display:flex; align-items:center; gap:8px;">
                         <i class="ti ti-file-text" style="color:#38bdf8;"></i>
                         Current CV on file —
-                        <a href="{{ Storage::url($settings->cv_path) }}" target="_blank" style="color:#38bdf8;">View</a>
+                        <a href="{{ route('cv.download') }}" target="_blank" style="color:#38bdf8;">View</a>
                     </div>
                 @endif
                 <div class="file-upload" onclick="document.getElementById('cv').click()">

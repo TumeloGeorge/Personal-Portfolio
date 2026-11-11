@@ -37,25 +37,29 @@ class AdminSettingsController extends Controller
             'cv'                 => ['nullable', 'mimes:pdf', 'max:5120'],
         ]);
 
-        // Handle avatar upload
+        $oldAvatarPath = null;
+        $oldCvPath = null;
+
         if ($request->hasFile('avatar')) {
-            if ($settings->avatar_path) {
-                Storage::disk('public')->delete($settings->avatar_path);
-            }
-            $validated['avatar_path'] = $request->file('avatar')->store('avatars', 'public');
+            $oldAvatarPath = $settings->avatar_path;
+            $validated['avatar_path'] = $request->file('avatar')->store('avatars');
         }
 
-        // Handle CV upload
         if ($request->hasFile('cv')) {
-            if ($settings->cv_path) {
-                Storage::disk('public')->delete($settings->cv_path);
-            }
-            $validated['cv_path'] = $request->file('cv')->store('cv', 'public');
+            $oldCvPath = $settings->cv_path;
+            $validated['cv_path'] = $request->file('cv')->store('cv');
         }
 
         $validated['available_for_work'] = $request->boolean('available_for_work');
 
         $settings->update($validated);
+
+        if ($oldAvatarPath) {
+            Storage::disk()->delete($oldAvatarPath);
+        }
+        if ($oldCvPath) {
+            Storage::disk()->delete($oldCvPath);
+        }
 
         return back()->with('success', 'Settings updated successfully.');
     }

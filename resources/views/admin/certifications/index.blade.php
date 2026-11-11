@@ -47,7 +47,7 @@
                     <td><span class="tag tag-blue">{{ $cert->year }}</span></td>
                     <td>
                         @if($cert->certificate_file_path)
-                            <a href="{{ Storage::url($cert->certificate_file_path) }}" target="_blank" class="btn-secondary btn-sm">
+                            <a href="{{ route('certificate.download', $cert) }}" target="_blank" class="btn-secondary btn-sm">
                                 <i class="ti ti-eye"></i> View
                             </a>
                         @else

@@ -11,7 +11,7 @@ class AdminCertificationController extends Controller
 {
     public function index()
     {
-        $certifications = Certification::orderBy('sort_order')->get();
+        $certifications = Certification::orderBy('sort_order', 'asc')->get();
         return view('admin.certifications.index', ['certifications' => $certifications]);
     }
 
@@ -34,12 +34,12 @@ class AdminCertificationController extends Controller
 
         if ($request->hasFile('certificate_file')) {
             $validated['certificate_file_path'] = $request->file('certificate_file')
-                ->store('certificates', 'public');
+                ->store('certificates');
         }
 
         if ($request->hasFile('badge_image')) {
             $validated['badge_image_path'] = $request->file('badge_image')
-                ->store('badges', 'public');
+                ->store('badges');
         }
 
         Certification::create($validated);
@@ -63,35 +63,39 @@ class AdminCertificationController extends Controller
             'badge_image'      => ['nullable', 'image', 'max:2048'],
         ]);
 
+        $oldCertificatePath = null;
+        $oldBadgePath = null;
         if ($request->hasFile('certificate_file')) {
-            if ($certification->certificate_file_path) {
-                Storage::disk('public')->delete($certification->certificate_file_path);
-            }
+            $oldCertificatePath = $certification->certificate_file_path;
             $validated['certificate_file_path'] = $request->file('certificate_file')
-                ->store('certificates', 'public');
+                ->store('certificates');
         }
 
         if ($request->hasFile('badge_image')) {
-            if ($certification->badge_image_path) {
-                Storage::disk('public')->delete($certification->badge_image_path);
-            }
+            $oldBadgePath = $certification->badge_image_path;
             $validated['badge_image_path'] = $request->file('badge_image')
-                ->store('badges', 'public');
+                ->store('badges');
         }
 
         $certification->update($validated);
+        if ($oldCertificatePath) {
+            Storage::disk()->delete($oldCertificatePath);
+        }
+        if ($oldBadgePath) {
+            Storage::disk()->delete($oldBadgePath);
+        }
         return redirect()->route('admin.certifications.index')->with('success', 'Certification updated.');
     }
 
     public function destroy(Certification $certification)
     {
         if ($certification->certificate_file_path) {
-            Storage::disk('public')->delete($certification->certificate_file_path);
+            Storage::disk()->delete($certification->certificate_file_path);
         }
         if ($certification->badge_image_path) {
-            Storage::disk('public')->delete($certification->badge_image_path);
+            Storage::disk()->delete($certification->badge_image_path);
         }
-        $certification->delete();
+        Certification::destroy($certification->id);
         return redirect()->route('admin.certifications.index')->with('success', 'Certification deleted.');
     }
 }

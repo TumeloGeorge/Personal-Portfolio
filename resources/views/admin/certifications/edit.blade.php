@@ -40,7 +40,7 @@
                     @if($certification->certificate_file_path)
                         <div style="margin-bottom:8px; font-size:12px; color:#64748b; display:flex; align-items:center; gap:6px;">
                             <i class="ti ti-file" style="color:#38bdf8;"></i>
-                            <a href="{{ Storage::url($certification->certificate_file_path) }}" target="_blank" style="color:#38bdf8;">Current file</a>
+                            <a href="{{ route('certificate.download', $certification) }}" target="_blank" style="color:#38bdf8;">Current file</a>
                         </div>
                     @endif
                     <div class="file-upload" onclick="document.getElementById('cert_file').click()">
